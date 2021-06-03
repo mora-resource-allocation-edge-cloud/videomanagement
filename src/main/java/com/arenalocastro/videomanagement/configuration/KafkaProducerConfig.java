@@ -14,11 +14,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-@ConditionalOnProperty(
-        value="deployment.needKafka",
-        havingValue="true",
-        matchIfMissing=true
-)
 public class KafkaProducerConfig {
     @Value(value = "${KAFKA_ADDRESS}")
     private String bootstrapAddress;
@@ -31,9 +26,12 @@ public class KafkaProducerConfig {
 
     @Bean
     public ProducerFactory<String, String> producerFactory() {
+        System.out.println(isCloud);
+        System.out.println(variantType);
         if (!isCloud && variantType == 0) {
             return null;
         }
+        System.out.println("Trying to connect with " + bootstrapAddress);
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);

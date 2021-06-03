@@ -18,12 +18,12 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-@Configuration
-@ConditionalOnProperty(
+/*@ConditionalOnProperty(
         value="deployment.needKafka",
         havingValue="true",
         matchIfMissing=true
-)
+)*/
+@Configuration
 @EnableKafka
 public class KafkaConsumerConfig {
 
