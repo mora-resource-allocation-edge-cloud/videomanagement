@@ -10,12 +10,12 @@ import org.springframework.kafka.core.KafkaAdmin;
 
 import java.util.HashMap;
 import java.util.Map;
-/*
+
 @ConditionalOnProperty(
         value="deployment.needKafka",
         havingValue="true",
         matchIfMissing=true
-)*/
+)
 @Configuration
 public class KafkaTopicConfig {
     @Value(value = "${KAFKA_ADDRESS}")
